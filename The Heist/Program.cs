@@ -49,11 +49,20 @@ namespace The_Heist
             var bankDifficultyLevel = 100;
             var teamSkillLevel = 0;
 
+            var random = new Random();
+            int luckValue = random.Next(-10, 10);
+
+            bankDifficultyLevel += luckValue;
+
             foreach (var member in yourTeam)
             {
                 teamSkillLevel += member.SkillLevel;
 
             }
+
+            Console.WriteLine($"The teams combined skill level is {teamSkillLevel}");
+            Console.WriteLine($"The banks difficulty level is {bankDifficultyLevel}");
+
             if(teamSkillLevel > bankDifficultyLevel)
             {
                 Console.WriteLine("Your team successfully robbed the bank!!");
