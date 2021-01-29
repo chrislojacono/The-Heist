@@ -7,11 +7,11 @@ namespace The_Heist
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Plan Your Heist!");
             var yourTeam = new List<TeamMember> { };
             bool askForUserInput = true;
             while (askForUserInput)
             {
-                Console.WriteLine("Plan Your Heist!");
                 Console.WriteLine("Enter a Team Members Name");
                 var teamName = Console.ReadLine();
                 if (String.IsNullOrEmpty(teamName))
@@ -45,11 +45,24 @@ namespace The_Heist
             }
             
             Console.WriteLine($"There a {yourTeam.Count} skilled members of your team!");
+
+            var bankDifficultyLevel = 100;
+            var teamSkillLevel = 0;
+
             foreach (var member in yourTeam)
             {
-                Console.WriteLine($"You have {member.Name} with a skill level of {member.SkillLevel} and a courage of {member.Courage}");
+                teamSkillLevel += member.SkillLevel;
 
             }
+            if(teamSkillLevel > bankDifficultyLevel)
+            {
+                Console.WriteLine("Your team successfully robbed the bank!!");
+            }
+            else
+            {
+                Console.WriteLine("Your team did not have the skills to rob the bank. Have fun in JAIL!");
+            }
+
 
         }
     }
