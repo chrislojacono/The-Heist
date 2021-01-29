@@ -8,6 +8,10 @@ namespace The_Heist
         static void Main(string[] args)
         {
             Console.WriteLine("Plan Your Heist!");
+            Console.WriteLine("How difficult would you like your bank to be? Enter a number Value");
+            var inputOfBank = Console.ReadLine();
+            var bankDifficultyLevel = Int32.Parse(inputOfBank);
+
             var yourTeam = new List<TeamMember> { };
             bool askForUserInput = true;
             while (askForUserInput)
@@ -50,9 +54,11 @@ namespace The_Heist
             Console.WriteLine("How many times would you like to run the scenario?");
             var numOfScenarios = Console.ReadLine();
             var counter = 0;
+            var successfulRuns = 0;
+            var failedRuns = 0;
             while(Int32.Parse(numOfScenarios) > counter)
             {
-                var bankDifficultyLevel = 100;
+                
                 var teamSkillLevel = 0;
                 var random = new Random();
                 int luckValue = random.Next(-10, 10);
@@ -71,13 +77,17 @@ namespace The_Heist
                 if (teamSkillLevel > bankDifficultyLevel)
                 {
                     Console.WriteLine("Your team successfully robbed the bank!!");
+                    successfulRuns++;
+
                 }
                 else
                 {
                     Console.WriteLine("Your team did not have the skills to rob the bank. Have fun in JAIL!");
+                    failedRuns++;
                 }
                 counter++;
             }
+            Console.WriteLine($"The bank was robbed {successfulRuns} times and you went to jail {failedRuns} times. Thanks for playing!!");
         }
     }
 }
