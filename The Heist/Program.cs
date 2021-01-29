@@ -48,6 +48,7 @@ namespace The_Heist
             foreach (var member in yourTeam)
             {
                 Console.WriteLine($"You have {member.Name} with a skill level of {member.SkillLevel} and a courage of {member.Courage}");
+
             }
 
         }
