@@ -38,41 +38,46 @@ namespace The_Heist
                 }
                 var convertedCourageLevel = double.Parse(courageLevel);
 
-                var firstTeamMember = new TeamMember(teamName, convertedSkillLevel, convertedCourageLevel);
-                yourTeam.Add(firstTeamMember);
+                var teamMember = new TeamMember(teamName, convertedSkillLevel, convertedCourageLevel);
+                yourTeam.Add(teamMember);
 
-                firstTeamMember.ShowInfo();
+                
             }
             
             Console.WriteLine($"There a {yourTeam.Count} skilled members of your team!");
 
-            var bankDifficultyLevel = 100;
-            var teamSkillLevel = 0;
 
-            var random = new Random();
-            int luckValue = random.Next(-10, 10);
-
-            bankDifficultyLevel += luckValue;
-
-            foreach (var member in yourTeam)
+            Console.WriteLine("How many times would you like to run the scenario?");
+            var numOfScenarios = Console.ReadLine();
+            var counter = 0;
+            while(Int32.Parse(numOfScenarios) > counter)
             {
-                teamSkillLevel += member.SkillLevel;
+                var bankDifficultyLevel = 100;
+                var teamSkillLevel = 0;
+                var random = new Random();
+                int luckValue = random.Next(-10, 10);
 
+                bankDifficultyLevel += luckValue;
+
+                foreach (var member in yourTeam)
+                {
+                    teamSkillLevel += member.SkillLevel;
+
+                }
+
+                Console.WriteLine($"The teams combined skill level is {teamSkillLevel}");
+                Console.WriteLine($"The banks difficulty level is {bankDifficultyLevel}");
+
+                if (teamSkillLevel > bankDifficultyLevel)
+                {
+                    Console.WriteLine("Your team successfully robbed the bank!!");
+                }
+                else
+                {
+                    Console.WriteLine("Your team did not have the skills to rob the bank. Have fun in JAIL!");
+                }
+                counter++;
             }
-
-            Console.WriteLine($"The teams combined skill level is {teamSkillLevel}");
-            Console.WriteLine($"The banks difficulty level is {bankDifficultyLevel}");
-
-            if(teamSkillLevel > bankDifficultyLevel)
-            {
-                Console.WriteLine("Your team successfully robbed the bank!!");
-            }
-            else
-            {
-                Console.WriteLine("Your team did not have the skills to rob the bank. Have fun in JAIL!");
-            }
-
-
         }
     }
 }
